@@ -1,0 +1,5 @@
+Q1:DIN->data input 負責接收傳入之input為何
+CS->load 負責判斷是否已經輸入完成 當load0->1才顯示出來
+CLK->clock 負責控制時間 當CLK0->1時將一碼DIN讀入register
+
+Q2:address表示要讓哪一個LED組合亮起來 data則表示該LED組合中哪些LED要亮
