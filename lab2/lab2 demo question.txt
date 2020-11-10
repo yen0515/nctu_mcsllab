@@ -1,0 +1,20 @@
+Q1:callee-save register指的便是在一procedure call時由callee負責存到stack中或是先行複製以防丟失 相反的caller-save register澤次由caller來負責存放或複製
+而caller-save register的優點為 在存取後callee便可直接取用該值而不需另外存入stack frame
+callee-save register的優點則為 在call的前後會為一致 因此適合存放不能受到改變的數
+
+Q3:遞迴所需的argument跟lr需先備份
+
+Q4:需先加上!
+push {R0} = str R0, [sp, #-4]!
+pop {R0} = ldr R0, [sp], #4
+// LDRFD
+
+demo question
+3-1-1:先算出(XL+XR)*(YL+YR)後用一register存放
+再將(XLYL+XRYR)算出後兩者相減 之後分開為前半跟後半再做shift
+3-1-2:先使用adds 這樣若有carry需進位則將flag C變為1 再使用adc可以自動將C進位
+
+3-2-1:先將sp指向stack_bottom+128 因為stack大小會是128
+
+3-3-1:要先備份lr是因為如此一來再遞迴結束要將值回到上一個呼叫的地方時那個lr才不會消失
+我是跟argument也就是R0R1在調整完下一次遞迴的R0R1後一起push 備份時機只要是在進到下一個call之前都可以
