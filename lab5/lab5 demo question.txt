@@ -1,0 +1,15 @@
+Question
+Q1:當max7219_send被呼叫時 會與兩個function parameter一起被傳遞 而這兩個parameter是在整個城市的最上方 以extern的形式被宣告 如程式中的address跟data 而address便會對應到max7219_send在arm中的r0 data對應到r1 因為r0-r3會用來存錢4個parameters 其餘才會存在stack
+
+Q2:不讓編譯器進行優化，即每次讀取或者修改值的時候，都必須重新從內存或者寄存器中讀取或者修改
+而___IO代表為輸出輸入口 輸入或輸出皆不能讓編譯器進行優化
+好處是能夠避免因為編譯器自動優化而導致的資料錯誤或是資料流失 如output時 因為判斷兩筆output接依樣而忽略其中一筆 如此一來便會有錯誤 或是在兩筆輸出中間透過外部修改了值 如此一來則會有錯誤
+
+demo question
+3.1.1 需在arm中將在.c中呼叫的function設為global 並且在.c中以extern呼叫該function
+
+3.2.1 輪流將各個column的input設為1 並且觀察哪一個output會是1 便可以得知是哪一個按鍵被按下
+總共檢查16次
+
+3.2.2可以直接呼叫GPIOA並叫出struct內所需改變的GPIO register值 如MODER或是PUPDR等等 並且可以直接對其進行值的改變
+
